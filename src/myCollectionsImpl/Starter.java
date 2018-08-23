@@ -1,12 +1,10 @@
 package myCollectionsImpl;
 
-import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Map;
 
 
 public class Starter {
-	private static int size;
+	
 	public static void main(String[] args) {
 		
 		Stack<Person> myStack = new Stack<>();
@@ -34,6 +32,20 @@ public class Starter {
 		Iterator<Person> itr = arr1.iterator();
 		System.out.println(itr.next());
 		System.out.println(itr.next());
+		
+		System.out.println("\nLinkedList get(): Node<E>");
+		LinkedList<String> names = new LinkedList<>();
+		names.add("George");
+		names.add("Mason");
+		names.add("Daniel");
+		names.add("Andrew");
+		names.add("Michael");
+		names.add("Jayden");
+//		System.out.println(names.get(3));
+//		System.out.println(names.get(2));
+//		System.out.println(names.get(6)); // will get an error
+		names.remove(4);
+		names.printAll();
 	}
 }
 
