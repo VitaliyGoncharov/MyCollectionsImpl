@@ -24,6 +24,26 @@ public class HashMap<K,V> {
 		table = new Entry[DEFAULT_INITIAL_CAPACITY];
 	}
 	
+	public V get(Object key) {
+		if (key == null)
+			return getForNullKey();
+		int hash = hash(key.hashCode());
+		for (Entry<K,V> e = table[indexFor(hash, table.length)]; e != null; e = e.next) {
+			Object k;
+			if (e.hash == hash && ((k = e.key) == key || key.equals(k)))
+				return e.value;
+		}
+		return null;
+	}
+	
+	public V getForNullKey() {
+		for (Entry<K,V> e = table[0]; e != null; e = e.next) {
+			if (e.key == null)
+				return e.value;
+		}
+		return null;
+	}
+	
 	public V put(K key, V value) {
 		int hash = hash(key);
 		int i = indexFor(hash, table.length);

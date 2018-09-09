@@ -5,8 +5,8 @@ public class MapDebug {
 	public static void main(String[] args) {
 		
 		HashMap<String, Integer> map = new HashMap<>();
-		map.put("dog", 1);
-		map.put("cat", 2);
+		map.put("FB", 11);
+		map.put("Ea", 22);
 		
 //		System.out.println(Integer.toBinaryString(-1));
 //		long l = Long.parseLong("11111111111111111111111111111111",2);
