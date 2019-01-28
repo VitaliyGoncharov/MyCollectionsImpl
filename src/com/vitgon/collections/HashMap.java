@@ -1,4 +1,4 @@
-package myCollectionsImpl;
+package com.vitgon.collections;
 
 import java.util.Objects;
 

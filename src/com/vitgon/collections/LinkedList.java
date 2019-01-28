@@ -1,4 +1,4 @@
-package myCollectionsImpl;
+package com.vitgon.collections;
 
 public class LinkedList<E> {
 	int size = 0;

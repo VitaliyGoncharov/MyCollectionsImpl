@@ -1,4 +1,4 @@
-package myCollectionsImpl;
+package com.vitgon.collections.exception;
 
 public class NoSuchElementException extends RuntimeException {
 	
@@ -8,7 +8,7 @@ public class NoSuchElementException extends RuntimeException {
 		super();
 	}
 	
-	NoSuchElementException(String s) {
+	public NoSuchElementException(String s) {
 		super(s);
 	}
 }

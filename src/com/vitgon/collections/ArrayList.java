@@ -1,6 +1,8 @@
-package myCollectionsImpl;
+package com.vitgon.collections;
 
 import java.util.Iterator;
+
+import com.vitgon.collections.exception.NoSuchElementException;
 
 public class ArrayList<E> implements Iterable<E> {
 	
