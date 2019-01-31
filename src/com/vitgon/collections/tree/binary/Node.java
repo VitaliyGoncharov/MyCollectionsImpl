@@ -1,4 +1,4 @@
-package com.vitgon.collections.tree;
+package com.vitgon.collections.tree.binary;
 
 public class Node {
 	int value;
