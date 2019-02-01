@@ -1,6 +1,7 @@
 package com.vitgon.collections.tree;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Tree {
@@ -30,48 +31,39 @@ public class Tree {
 		return "DayTree [rootNode=" + rootNode + "]";
 	}
 	
-	public void add(Object... args) {
-		List<Node> nodesLvl1 = rootNode.children;
-		
-		if (nodesLvl1 == null) {
-			nodesLvl1 = new ArrayList<>();
-		}
-		
-		for (Object value : args) {
-			nodesLvl1.add(new Node(value));
-		}
-		
-		rootNode.children = nodesLvl1;
+	public void add(Object[] path, Object object) {
+		List<Object> mutablePathList = new ArrayList<>(Arrays.asList(path));
+		rootNode.children = addRecursive(rootNode.children, mutablePathList, object);
 	}
 	
-	public void add(Object lvl1Value, Object lvl2Value, Object lvl3Value) {
-		System.out.println("My add() method");
-		
-		List<Node> nodesLvl1 = rootNode.children;
-		List<Node> nodesLvl2 = null;
-		List<Node> nodesLvl3 = null;
-		
-		if (nodesLvl1 == null) {
-			nodesLvl1 = new ArrayList<>();
-			nodesLvl2 = new ArrayList<>();
-			nodesLvl3 = new ArrayList<>();
-			
-			Node nodeLvl1 = new Node(lvl1Value);
-			Node nodeLvl2 = new Node(lvl2Value);
-			Node nodeLvl3 = new Node(lvl3Value);
-			
-			// add scheduleDTO node to empty list and set as a child for week level
-			nodesLvl3.add(nodeLvl3);
-			nodeLvl2.children = nodesLvl3;
-			
-			// add week node to empty list and set as a child for lessonNumber level
-			nodesLvl2.add(nodeLvl2);
-			nodeLvl1.children = nodesLvl2;
-			
-			// add lessonNumber node to empty list and set as a child for rootNode
-			nodesLvl1.add(nodeLvl1);
-			rootNode.children = nodesLvl1;
+	public List<Node> addRecursive(List<Node> nodesList, List<Object> path, Object value) {
+		if (nodesList == null) {
+			nodesList = new ArrayList<>();
 		}
+		
+		Node newNodeForLevel = null;
+		
+		// if we on the last node we need just to create node with [Object value]
+		if (path.size() == 0) {
+			return addValue(nodesList, value);
+		}
+		
+		// create node with value provided in path
+		newNodeForLevel = new Node(path.get(0));
+		// remove value that we used to create node
+		path.remove(0);
+		// add new node with next path to children of current node
+		newNodeForLevel.children = addRecursive(newNodeForLevel.children, path, value);
+		// add current node with generated children to parent node children list
+		nodesList.add(newNodeForLevel);
+		
+		return nodesList;
+	}
+	
+	public List<Node> addValue(List<Node> nodesList, Object value) {
+		Node nodeWithValue = new Node(value);
+		nodesList.add(nodeWithValue);
+		return nodesList;
 	}
 }
 
