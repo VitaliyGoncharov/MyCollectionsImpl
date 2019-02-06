@@ -9,5 +9,8 @@ public class TreeTest {
 		binaryTree.add(17);
 		
 		System.out.println(binaryTree);
+		
+		System.out.println(binaryTree.containsNode(3));
+		System.out.println(binaryTree.containsNode(17));
 	}
 }
